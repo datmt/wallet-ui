@@ -1,9 +1,70 @@
-<div class="row">
-  <div class="col-5">
-    <h2>Create transaction</h2>
-  </div>
+<h1>{{wallet?.title}}</h1>
 
-  <div class="col-7">
-    <h2>Your transactions</h2>
-  </div>
+<div class="row">
+    <div class="col-5">
+        <h2>Create transaction</h2>
+
+        <div id="create-transaction-form">
+            <mat-form-field appearance="outline">
+                <mat-label>Title</mat-label>
+                <input matInput placeholder="Title" [(ngModel)]="emptyTransaction.title">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <input matInput placeholder="Title" [(ngModel)]="emptyTransaction.description">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Amount</mat-label>
+                <input matInput placeholder="Title" [(ngModel)]="emptyTransaction.amount">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Category</mat-label>
+                <input matInput placeholder="Title" [(ngModel)]="emptyTransaction.category">
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline">
+                <mat-label>Type</mat-label>
+                <mat-select [(ngModel)]="emptyTransaction.type">
+                    <mat-option *ngFor="let type of ['DEPOSIT', 'WITHDRAW']" [value]="type">
+                        {{type}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <app-file-upload (onFileUploaded)="addFileToTransaction($event)"></app-file-upload>
+            <button mat-flat-button color="primary" (click)="createTransaction()">Create</button>
+        </div>
+    </div>
+
+    <div class="col-7">
+        <h2>Your transactions</h2>
+        <div id="list-transactions">
+            <mat-card class="single-transaction" *ngFor="let tx of transactions">
+                <mat-card-header>{{tx.title}}</mat-card-header>
+
+                <mat-card-content>
+                    <p>{{tx.description}}</p>
+                    <p>{{tx.amount}}</p>
+                    <p>{{tx.type}}</p>
+
+                    <app-file-view *ngFor="let img of tx.images" [imageId]="img"></app-file-view>
+                </mat-card-content>
+
+                <mat-card-actions>
+                    <button mat-button color="warn" (click)="deleteTransaction(tx.id!)">Delete</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+
+        <mat-paginator
+                (page)="onPageChange($event)"
+                [length]="totalItems"
+                [pageIndex]="pageIndex"
+                [pageSizeOptions]="[5, 10, 25, 100]"
+                [pageSize]="pageSize"
+                aria-label="Select page">
+        </mat-paginator>
+    </div>
 </div>

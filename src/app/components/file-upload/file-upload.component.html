@@ -1,0 +1,10 @@
+<div id="selected-files" *ngIf="selectedFile">
+    {{selectedFile.name}}
+</div>
+
+<label for="file">
+    <mat-spinner style="max-width: 15px; max-height: 15px;" *ngIf="isUploading"></mat-spinner>
+    <mat-icon color="primary" *ngIf="!isUploading">file_upload</mat-icon>
+    Select file to upload
+</label>
+<input (change)="onFileSelect($event)" type="file" id="file">

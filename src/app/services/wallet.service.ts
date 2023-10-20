@@ -15,6 +15,12 @@ export class WalletService {
   constructor(private http: HttpClient) {
   }
 
+  get(id: string): Observable<Wallet> {
+    return this.http.get<Wallet>(this.WALLET_API + `/${id}`)
+      .pipe(
+        shareReplay()
+      );
+  }
   create(wallet: Wallet): Observable<Wallet> {
     return this.http.post<Wallet>(this.WALLET_API, wallet)
       .pipe(
