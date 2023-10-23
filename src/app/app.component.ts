@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {AuthService, User} from "@auth0/auth0-angular";
-import {WalletService} from "./services/wallet.service";
+import {DOCUMENT} from "@angular/common";
+import {environment} from "./environments/environment";
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,8 @@ export class AppComponent {
 
   constructor(
     private authService: AuthService,
+    @Inject(DOCUMENT) public document: Document,
+
   ) {
   }
 
@@ -22,7 +25,11 @@ export class AppComponent {
   }
 
   logout() {
-    this.authService.logout();
+    this.authService.logout({
+      logoutParams: {
+        returnTo: environment.APP_ROOT
+      }
+    });
   }
 
   isAuthenticated() {

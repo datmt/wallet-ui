@@ -9,8 +9,9 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    title: 'Home',
+    title: 'Home - Piggy\'s Wallet',
   },
+
   {
     path: 'wallets',
     title: 'Wallets',
@@ -19,12 +20,12 @@ const routes: Routes = [
       {
         path: '',
         component: WalletManagementComponent,
-        title: 'Wallets',
+        title: 'Wallets - Piggy\'s Wallet',
       },
       {
         path: ':id',
         component: WalletDetailsComponent,
-        title: 'Wallet Details'
+        title: 'Wallet Details - Piggy\'s Wallet'
       }
     ]
   }

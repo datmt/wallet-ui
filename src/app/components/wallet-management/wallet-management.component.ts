@@ -19,9 +19,7 @@ export class WalletManagementComponent implements OnInit {
     title: '',
     description: '',
     currency: 'USD',
-    balance: 0,
-    id: ''
-
+    balance: 0
   }
 
   wallets: Wallet[] = [];
