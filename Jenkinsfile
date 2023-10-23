@@ -2,9 +2,7 @@
 //Build to prod ONLY trigger manually
 pipeline {
     agent any
-    triggers{
-      bitbucketPush()
-    }
+
     environment {
         DEPLOY_COMMAND="ssh -o StrictHostKeyChecking=no -p 25782 jenkins-agent@sso.openexl.com echo PIGGYS_FE_VERSION=${GIT_COMMIT} > /data/other-projects/piggys-wallet/.env && docker-compose -f /data/other-projects/piggys-wallet/piggys-frontend.yaml up -d"
         DOCKERFILE="Dockerfile"
