@@ -46,11 +46,11 @@ import {environment} from "./environments/environment";
                 allowedList: [
                     {
                         // Match any request that starts 'https://{yourDomain}/api/v2/' (note the asterisk)
-                        uri: environment.API_SERVER,
+                        uri: environment.API_SERVER + "*",
                         tokenOptions: {
                             authorizationParams: {
                                 // The attached token should target this audience
-                                audience: environment.API_SERVER + "*",
+                                audience: environment.API_SERVER,
                                 // The attached token should have these scopes
                                 scope: 'read:current_user'
                             }
