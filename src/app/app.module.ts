@@ -50,7 +50,7 @@ import {environment} from "./environments/environment";
                         tokenOptions: {
                             authorizationParams: {
                                 // The attached token should target this audience
-                                audience: environment.API_SERVER,
+                                audience: environment.API_SERVER + "*",
                                 // The attached token should have these scopes
                                 scope: 'read:current_user'
                             }
