@@ -19,6 +19,7 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
 import {MatIconModule} from "@angular/material/icon";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { FileViewComponent } from './components/file-view/file-view.component';
+import {environment} from "./environments/environment";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { FileViewComponent } from './components/file-view/file-view.component';
             clientId: 'iSlZhb14yAU7hQEKgZaYXDA22v4YChOr',
             authorizationParams: {
                 redirect_uri: window.location.origin,
-                audience: 'http://localhost:9292',
+                audience: environment.API_SERVER,
                 scope: 'read:current_user',
 
             },
@@ -45,7 +46,7 @@ import { FileViewComponent } from './components/file-view/file-view.component';
                 allowedList: [
                     {
                         // Match any request that starts 'https://{yourDomain}/api/v2/' (note the asterisk)
-                        uri: 'http://localhost:9292/*',
+                        uri: environment.API_SERVER,
                         tokenOptions: {
                             authorizationParams: {
                                 // The attached token should target this audience
